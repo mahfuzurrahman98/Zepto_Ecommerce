@@ -1,6 +1,5 @@
 <?php
-
-ini_set("display_errors", 1);
+// ini_set("display_errors", 1);
 require '../../header.php';
 require '../../vendor/autoload.php';
 
@@ -25,6 +24,15 @@ if (empty($data)) {
   ]);
   die;
 }
+
+$user->set([
+  "name" => $data->name,
+  "email" => $data->email,
+  "username" => $data->username,
+  "password" => password_hash($data->password, PASSWORD_DEFAULT),
+  "is_admin" => 0,
+  "registered_at" => date('Y-m-d H:i:s')
+]);
 
 $user_created_msg = $user->create(
   $data->name,

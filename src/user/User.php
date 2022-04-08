@@ -4,7 +4,6 @@ namespace App\user;
 
 use App\DBConnection;
 use \App\JWTToken;
-use PDO;
 use Exception;
 
 class User {
@@ -68,7 +67,7 @@ class User {
     }
   }
 
-  public function create($name, $email, $username, $password, $entryTime) {
+  public function create() {
     $sql = "select * from User
         where Username=:Username || Email=:Email";
     $stmt = DBConnection::prepareStatement($sql);
@@ -83,12 +82,12 @@ class User {
       $sql = "insert into User(Name, Email, Username, Password, Registered_At, Is_Admin)
         values(:Name, :Email, :Username, :Password, :Registered_At, :Is_Admin)";
       $stmt = DBConnection::prepareStatement($sql);
-      $stmt->bindValue(':Name', $name);
-      $stmt->bindValue(':Email', $email);
-      $stmt->bindValue(':Username', $username);
-      $stmt->bindValue(':Password', password_hash($password, PASSWORD_DEFAULT));
-      $stmt->bindValue(':Registered_At', $entryTime);
-      $stmt->bindValue(':Is_Admin', 0);
+      $stmt->bindValue(':Name', $this->name);
+      $stmt->bindValue(':Email', $this->email);
+      $stmt->bindValue(':Username', $this->username);
+      $stmt->bindValue(':Password', $this->password);
+      $stmt->bindValue(':Registered_At', $this->registered_at);
+      $stmt->bindValue(':Is_Admin', $this->is_admin);
       $stmt->execute();
       return "201";
     } catch (Exception $e) {
