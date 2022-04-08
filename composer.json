@@ -1,0 +1,19 @@
+{
+	"name": "mahfuz/zepto_ecommerce",
+	"description": "Assesment test for fullstack developer candidate",
+	"type": "project",
+	"autoload": {
+		"psr-4": {
+			"App\\": "src/"
+		}
+	},
+	"authors": [
+		{
+			"name": "mahfuz",
+			"email": "mahfuzurrahmanarif@gmail.com"
+		}
+	],
+	"require": {
+		"firebase/php-jwt": "^5.2"
+	}
+}
