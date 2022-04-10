@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] != "GET") {
 
 // get token and vallidate
 $headers = getallheaders();
+
 $jwtoken = $headers['Authorization'];
 User::authenticateUser($jwtoken);
 
